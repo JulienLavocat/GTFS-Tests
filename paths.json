@@ -1,0 +1,219 @@
+{
+  "mainPath": [
+    {
+      "stopId": "LANDN1",
+      "stopSequence": 1
+    },
+    {
+      "stopId": "BELLO1",
+      "stopSequence": 2
+    },
+    {
+      "stopId": "CARRE1",
+      "stopSequence": 3
+    },
+    {
+      "stopId": "PAGNO1",
+      "stopSequence": 4
+    },
+    {
+      "stopId": "CHYME1",
+      "stopSequence": 5
+    },
+    {
+      "stopId": "LANDS1",
+      "stopSequence": 6
+    },
+    {
+      "stopId": "PRLAN1",
+      "stopSequence": 7
+    },
+    {
+      "stopId": "CHMNA1",
+      "stopSequence": 8
+    },
+    {
+      "stopId": "ADOMA1",
+      "stopSequence": 9
+    },
+    {
+      "stopId": "BALME1",
+      "stopSequence": 10
+    },
+    {
+      "stopId": "GDVER1",
+      "stopSequence": 11
+    },
+    {
+      "stopId": "COUBE1",
+      "stopSequence": 12
+    },
+    {
+      "stopId": "ESTAD1",
+      "stopSequence": 13
+    },
+    {
+      "stopId": "CAF1",
+      "stopSequence": 14
+    },
+    {
+      "stopId": "SESOC1",
+      "stopSequence": 15
+    },
+    {
+      "stopId": "COVET1",
+      "stopSequence": 16
+    },
+    {
+      "stopId": "HOPBI2",
+      "stopSequence": 17
+    },
+    {
+      "stopId": "PREFC2",
+      "stopSequence": 18
+    },
+    {
+      "stopId": "CUIAL2",
+      "stopSequence": 19
+    },
+    {
+      "stopId": "BOCAG2",
+      "stopSequence": 20
+    },
+    {
+      "stopId": "GARAT2",
+      "stopSequence": 21
+    },
+    {
+      "stopId": "THERE2",
+      "stopSequence": 22
+    },
+    {
+      "stopId": "PAPIL2",
+      "stopSequence": 23
+    },
+    {
+      "stopId": "PRTRO12",
+      "stopSequence": 24
+    },
+    {
+      "stopId": "ZIMOL2",
+      "stopSequence": 25
+    },
+    {
+      "stopId": "PLAIN2",
+      "stopSequence": 26
+    },
+    {
+      "stopId": "TAREN2",
+      "stopSequence": 27
+    },
+    {
+      "stopId": "PLEAU2",
+      "stopSequence": 28
+    },
+    {
+      "stopId": "CCHAL2",
+      "stopSequence": 29
+    },
+    {
+      "stopId": "TRIVI2",
+      "stopSequence": 30
+    },
+    {
+      "stopId": "TRPRE2",
+      "stopSequence": 31
+    },
+    {
+      "stopId": "GABEL2",
+      "stopSequence": 32
+    },
+    {
+      "stopId": "CEJEO2",
+      "stopSequence": 33
+    },
+    {
+      "stopId": "FRASS",
+      "stopSequence": 34
+    }
+  ],
+  "sections": [
+    [
+      {
+        "stopId": "VACHZ1",
+        "stopSequence": 12
+      },
+      {
+        "stopId": "CVERT1",
+        "stopSequence": 11
+      },
+      {
+        "stopId": "GOLER1",
+        "stopSequence": 10
+      },
+      {
+        "stopId": "PUGNY1",
+        "stopSequence": 9
+      },
+      {
+        "stopId": "PCHAM1",
+        "stopSequence": 8
+      },
+      {
+        "stopId": "DARDL2",
+        "stopSequence": 7
+      },
+      {
+        "stopId": "PREAN2",
+        "stopSequence": 6
+      },
+      {
+        "stopId": "AOSTE2",
+        "stopSequence": 5
+      },
+      {
+        "stopId": "REBER2",
+        "stopSequence": 4
+      },
+      {
+        "stopId": "HORIZ2",
+        "stopSequence": 3
+      },
+      {
+        "stopId": "CRLOU2",
+        "stopSequence": 2
+      },
+      {
+        "stopId": "CEVEN2",
+        "stopSequence": 1
+      }
+    ],
+    [
+      {
+        "stopId": "GONRA1",
+        "stopSequence": 34
+      },
+      {
+        "stopId": "LONGE2",
+        "stopSequence": 33
+      },
+      {
+        "stopId": "GALIO1",
+        "stopSequence": 32
+      },
+      {
+        "stopId": "QUINQ1",
+        "stopSequence": 31
+      },
+      {
+        "stopId": "PRADI1",
+        "stopSequence": 30
+      },
+      {
+        "stopId": "PRTRO1",
+        "stopSequence": 29
+      }
+    ]
+  ],
+  "maxStopsCount": 34
+}

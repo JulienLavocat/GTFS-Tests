@@ -1,7 +1,7 @@
 import { Path, SequencedStop } from ".";
 import _ from "lodash";
 
-const getTripsMap = (trips: SequencedStop[][]) => {
+export const getTripsMap = (trips: SequencedStop[][]) => {
 	const tripsMap: Record<string, number>[] = [];
 	trips.forEach((stops) =>
 		tripsMap.push(

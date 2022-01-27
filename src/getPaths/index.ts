@@ -12,55 +12,68 @@ export interface SequencedStop {
 
 export type Path = [string, number][];
 
-const findSectionsInPath = (path: Path) => {
-	const sections: [number, number][] = [];
+export function getPaths(timetable: StopTimeTable): {
+	paths: { paths?: string[][]; mergeAt: string; continueTo: string }[];
+	mainPath: SequencedStop[];
+} {
+	const paths = getPathsFromTrips(timetable.services);
+	const trips = [paths.mainPath, ...paths.trips];
 
-	let sectionStart = 0;
-	for (let i = 1; i < path.length; i++) {
-		const previousStopSequence = path[i - 1][1];
-		const currentStopSequence = path[i][1];
-		if (currentStopSequence - 1 === previousStopSequence) continue;
+	const mainPathIds = paths.mainPath.map((e) => e.stopId);
 
-		sections.push([sectionStart, i - 1]);
-		sectionStart = i;
+	if (trips.length < 2) {
+		// It's a simple line, with no other routes associated
+		return {
+			paths: [],
+			mainPath: paths.mainPath,
+		};
 	}
 
-	sections.push([sectionStart, path.length - 1]);
-	return sections;
-};
+	const extractPathFromSplit = (array: string[], common: string) => {
+		const mainPathId = mainPathIds[mainPathIds.indexOf(common) - 1];
+		const part = array.slice(0, array.indexOf(common));
+		if (part[part.length - 1] === mainPathId) part.splice(-1);
 
-export function getPaths(timetable: StopTimeTable) {
-	const { mainPath, trips } = getPathsFromTrips(timetable.services);
+		return part;
+	};
 
-	const trip = trips[0];
-	const mainPathMap = getTripMap(mainPath);
-	const tripsMap = getTripsMap(trips);
-	const sharedStops = intersection(
-		mainPath.map((e) => e.stopId),
-		trip.map((e) => e.stopId)
-	).map((stopId) => [stopId, mainPathMap[stopId]] as [string, number]);
+	const getStartingSplit = () => {
+		const split = {
+			paths: [] as string[][],
+			mergeAt: "",
+			continueTo: "",
+		};
+		for (let i = 0; i < trips.length; i++) {
+			const currentTrip = trips[i];
 
-	const diff = difference(
-		trip.map((e) => e.stopId),
-		mainPath.map((e) => e.stopId)
-	).map((stopId) => [stopId, tripsMap[0][stopId]] as [string, number]);
+			for (let j = 0; j < trips.length; j++) {
+				if (j === i) continue;
 
-	const parts = findSectionsInPath(diff);
-	const firstSplitOfSection =
-		mainPath[mainPath.findIndex((e) => e.stopId === sharedStops[0][0])];
+				const otherTrip = trips[j];
 
-	const sections = [];
-	for (const [start, end] of parts) {
-		const section: Path = slice(diff, start, end + 1).reverse();
-		sections.push([
-			[firstSplitOfSection.stopId, firstSplitOfSection.stopSequence],
-			...section,
-		]);
-	}
+				const currentIds = currentTrip.map((e) => e.stopId);
+				const otherIds = otherTrip.map((e) => e.stopId);
+				const commonStops = intersection(currentIds, otherIds);
+				const currentPart = extractPathFromSplit(
+					currentIds,
+					commonStops[0]
+				);
 
-	// const paths = differenceBetweenPaths(trips, mainPath);
+				split.paths.push(currentPart);
+				split.mergeAt = commonStops[0];
+				split.continueTo = commonStops[commonStops.length - 1];
+			}
+		}
 
-	// const sections = splitPathsInSections(trips, paths, mainPath);
+		return split;
+	};
 
-	return { mainPath, sections, maxStopsCount: mainPath.length };
+	const startingSplit = getStartingSplit();
+
+	const path = [startingSplit];
+
+	// Maybe find the "continuesTo" index for each routes, slice the array at this point until the end
+	// and re-apply the same logic for "getStartingSplit"
+
+	return { paths: path, mainPath: paths.mainPath };
 }

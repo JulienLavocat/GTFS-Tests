@@ -14,12 +14,15 @@ const routesUrl =
   "https://nextop-api.herokuapp.com/v1/gtfs/6164441b8654610022751b85/routes?agencyKey=stac&filters=%7B%7D";
 
 export async function makeArgs(routeId: string) {
+  console.log("Fetching data from API");
   const routes: any[] = (await axios.get(routesUrl)).data;
   const route = routes.find((e) => e.routeId === routeId);
   const timetable = await getTimetable(routeId);
 
   fs.writeFileSync(
-    "./args.json",
+    `./args/${routeId}.json`,
     JSON.stringify({ route, timetable }, null, 2)
   );
+
+  console.log("Data fetched successfully");
 }
